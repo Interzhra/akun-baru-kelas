@@ -1,24 +1,273 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil Mahasiswa</title>
-  <style>
-    body { font-family: Arial; background: #eaf2f8;
-           text-align: center; padding: 40px; }
-    .card { background: white; max-width: 500px;
-            margin: auto; padding: 30px; border-radius: 15px; }
-    h1 { color: #1769aa; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portfolio - Interactive Grid Workspace</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Caveat (Handwriting font for sticky notes) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        hand: ['Caveat', 'cursive'],
+                    },
+                    colors: {
+                        mat: {
+                            base: '#1a412f',
+                            dark: '#143425',
+                            grid: '#2b5e45',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Pattern background yang menyerupai Cutting Mat Hijau */
+        .cutting-mat-bg {
+            background-color: #1a412f;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(to right, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+            background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+        }
+
+        /* Shadow & Rotasi khusus untuk gaya floating sticker / paper */
+        .floating-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+        }
+
+        .floating-element {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .floating-element:hover {
+            transform: translateY(-5px) scale(1.02) !important;
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Custom scrollbar halus */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #143425;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2b5e45;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body>
-  <div class="card">
-    <h1>Profil Mahasiswa</h1>
-    <h2>Nama: Azhra Zukhurf</h2>
-    <p>Program Studi: Manajemen Informasi Komunikasi</p>
-    <p>Saya sedang belajar Cloud Computing.</p>
-    <p>Email: azhinterazhr@email.com</p>
-  </div>
+<body class="cutting-mat-bg text-white font-sans min-h-screen flex flex-col justify-between overflow-x-hidden relative selection:bg-emerald-500 selection:text-black">
+
+    <!-- NAVBAR TOP -->
+    <header class="w-full pt-4 px-4 sm:px-8 max-w-7xl mx-auto z-50">
+        <nav class="bg-[#f0f2f1] text-gray-900 rounded-full px-5 py-2.5 flex items-center justify-between shadow-xl">
+            <!-- Brand Logo / Name -->
+            <a href="#" class="flex items-center gap-2 font-bold text-lg tracking-tight hover:opacity-80 transition">
+                <div class="bg-black text-white p-1.5 rounded-lg flex items-center justify-center">
+                    <i data-lucide="code-2" class="w-4 h-4"></i>
+                </div>
+                <span>Azhra<span class="text-emerald-700">.dev</span></span>
+            </a>
+
+            <!-- Navigation Links (Middle) -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
+                <a href="#projects" class="hover:text-black transition">Projects</a>
+                <a href="#about" class="hover:text-black transition">About</a>
+                <a href="#skills" class="hover:text-black transition">Skills</a>
+                <a href="#contact" class="hover:text-black transition">Guides & Notes</a>
+            </div>
+
+            <!-- Right Buttons -->
+            <div class="flex items-center gap-3">
+                <a href="#contact" class="text-sm font-medium text-gray-700 hover:text-black px-3 py-1.5 transition hidden sm:inline-block">
+                    Contact Me
+                </a>
+                <a href="#projects" class="bg-[#1f2421] text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-black transition shadow-md">
+                    Hire Me
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO WORKSPACE SECTION -->
+    <main class="relative flex-1 flex items-center justify-center py-16 px-4 sm:px-8 max-w-7xl mx-auto w-full my-4">
+
+        <!-- ================= FLOATING DECORATIVE ELEMENTS ================= -->
+
+        <!-- 1. Top-Left Push Notification Pill -->
+        <div class="absolute top-2 left-4 sm:left-12 lg:left-20 floating-element -rotate-3 z-20 max-w-[260px] sm:max-w-xs">
+            <div class="bg-white/90 backdrop-blur-md text-gray-900 p-2.5 rounded-2xl floating-shadow flex items-start gap-2.5 border border-white/40">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" alt="Avatar" class="w-8 h-8 rounded-full object-cover">
+                <div class="text-xs">
+                    <div class="flex justify-between items-center w-full gap-2">
+                        <span class="font-bold text-gray-900">Lecturer / Supervisor</span>
+                        <span class="text-[10px] text-gray-400">now</span>
+                    </div>
+                    <p class="text-gray-600 mt-0.5 line-clamp-2">"Your code submission for Web Dev project is approved! Great work 🚀"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Hello Name Badge (Red Badge - Left Side) -->
+        <div class="absolute top-36 left-2 sm:left-10 lg:left-16 floating-element -rotate-12 z-10 hidden sm:block">
+            <div class="bg-gradient-to-b from-red-500 to-red-600 rounded-2xl p-1 floating-shadow w-44 sm:w-48 text-center border border-red-400">
+                <div class="bg-red-600 text-white font-black text-xs py-1 tracking-widest uppercase rounded-t-xl">
+                    HELLO
+                </div>
+                <div class="bg-white text-gray-900 p-3 rounded-b-xl flex flex-col items-center justify-center min-h-[90px]">
+                    <span class="text-xs uppercase font-semibold text-gray-500 tracking-wider">MY NAME IS</span>
+                    <span class="font-hand text-2xl font-bold text-gray-800 leading-tight">Azhra Maulana</span>
+                    <span class="text-[10px] text-red-500 font-medium">INFORMATICS STUDENT</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Blue Sticker Tag (Left Bottom) -->
+        <div class="absolute bottom-12 left-6 sm:left-16 floating-element rotate-45 z-10 hidden md:block">
+            <div class="bg-sky-500 text-white font-bold text-xs px-6 py-1.5 rounded-md floating-shadow tracking-wider uppercase border border-sky-300 flex items-center gap-1">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Student Portfolio
+            </div>
+        </div>
+
+        <!-- 4. Yellow Tech Badge (Bottom Left) -->
+        <div class="absolute bottom-2 left-28 sm:left-40 floating-element -rotate-6 z-20">
+            <div class="bg-amber-400 text-gray-900 p-3 rounded-2xl floating-shadow border-2 border-amber-300 flex items-center justify-center">
+                <i data-lucide="code" class="w-7 h-7 text-gray-900"></i>
+            </div>
+        </div>
+
+        <!-- 5. Binder Clip with Paper (Left Side Accent) -->
+        <div class="absolute bottom-28 left-4 sm:left-24 floating-element rotate-12 z-20 hidden lg:block">
+            <div class="relative">
+                <!-- Binder Clip SVG Graphic -->
+                <div class="w-10 h-8 bg-neutral-800 rounded-sm mx-auto shadow-md relative z-10 border border-neutral-600">
+                    <div class="w-6 h-6 border-2 border-gray-300 rounded-full absolute -top-4 left-2"></div>
+                </div>
+                <!-- Paper under clip -->
+                <div class="bg-amber-50 text-gray-800 p-3 rounded shadow-md font-hand text-sm w-28 -mt-2 -ml-2 border border-amber-100">
+                    📌 Final Exam Sprint: 98% Done
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Blue Chat Card (Top Right) -->
+        <div class="absolute top-6 right-4 sm:right-12 lg:right-24 floating-element rotate-6 z-20 max-w-[240px] sm:max-w-xs">
+            <div class="bg-blue-600 text-white p-3 rounded-2xl floating-shadow text-xs border border-blue-400">
+                <div class="flex justify-between items-center font-bold mb-1">
+                    <span>Freelance Client</span>
+                    <span class="text-[10px] text-blue-200">12:00 AM</span>
+                </div>
+                <p class="font-medium text-blue-50">"Hey! Just tested your Web App, it looks amazing! Thanks a lot 🙏"</p>
+            </div>
+        </div>
+
+        <!-- 7. Tech Stack Coins & Icons (Right Middle) -->
+        <div class="absolute top-36 right-6 sm:right-16 lg:right-32 floating-element -rotate-12 z-20 flex flex-col items-center gap-2">
+            <div class="w-12 h-12 bg-sky-400 rounded-full flex items-center justify-center floating-shadow border-2 border-white">
+                <i data-lucide="react" class="w-7 h-7 text-white animate-spin-slow"></i>
+            </div>
+            <div class="w-14 h-14 bg-indigo-600 rounded-full flex items-center justify-center floating-shadow border-2 border-white -mt-4 ml-6">
+                <i data-lucide="figma" class="w-7 h-7 text-white"></i>
+            </div>
+        </div>
+
+        <!-- 8. Yellow Sticky Note (Bottom Right) -->
+        <div class="absolute bottom-8 right-4 sm:right-12 lg:right-20 floating-element rotate-6 z-30">
+            <div class="bg-yellow-300 text-gray-900 p-5 rounded-sm floating-shadow w-48 sm:w-56 font-hand text-xl leading-snug border-b-4 border-r-4 border-yellow-400">
+                <p class="font-bold text-yellow-950">To-Do List:</p>
+                <p>• Finish Portfolio UI ✨</p>
+                <p>• Push to GitHub Repository 🚀</p>
+                <p class="text-emerald-800 font-bold mt-1">STATUS: READY TO COMMIT!</p>
+            </div>
+        </div>
+
+        <!-- 9. Red Sticker Circle (Bottom Right Accent) -->
+        <div class="absolute bottom-36 right-36 sm:right-48 floating-element -rotate-45 z-10 hidden sm:block">
+            <div class="w-12 h-12 bg-red-600 rounded-full floating-shadow border-2 border-white flex items-center justify-center">
+                <i data-lucide="terminal" class="w-6 h-6 text-white"></i>
+            </div>
+        </div>
+
+        <!-- ================= MAIN CENTER HERO CONTENT ================= -->
+        <div class="relative z-10 text-center max-w-2xl px-4 py-8 rounded-3xl bg-mat-dark/40 backdrop-blur-xs border border-white/5 shadow-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-emerald-300 text-xs font-medium mb-6 border border-emerald-500/20">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                Informatics Student & Frontend Enthusiast
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                Create, Learn, Deliver
+            </h1>
+
+            <p class="text-base sm:text-lg text-emerald-100/80 mb-8 max-w-xl mx-auto font-normal leading-relaxed">
+                Welcome to my digital workspace. Building modern web experiences, creative user interfaces, and solving real-world coding problems.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#projects" class="w-full sm:w-auto bg-white text-gray-900 font-semibold px-8 py-3.5 rounded-full hover:bg-emerald-400 transition duration-200 shadow-xl flex items-center justify-center gap-2 text-sm">
+                    <i data-lucide="folder-git-2" class="w-4 h-4"></i>
+                    View Projects
+                </a>
+                <a href="https://github.com" target="_blank" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-medium px-6 py-3.5 rounded-full backdrop-blur-md border border-white/10 transition text-sm flex items-center justify-center gap-2">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    GitHub Profile
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="w-full pb-6 px-4 sm:px-8 max-w-7xl mx-auto z-40">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-emerald-200/70 border-t border-white/10 pt-6">
+            
+            <!-- Footer Nav Links -->
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 font-medium">
+                <a href="#projects" class="hover:text-white transition">Projects</a>
+                <a href="#about" class="hover:text-white transition">About</a>
+                <a href="#skills" class="hover:text-white transition">Skills</a>
+                <a href="#blog" class="hover:text-white transition">Blog</a>
+                <a href="#contact" class="hover:text-white transition">Contact</a>
+                <a href="#privacy" class="hover:text-white transition">Privacy Policy</a>
+            </div>
+
+            <!-- Footer Center Logo -->
+            <div class="flex items-center gap-1.5 font-bold text-white text-sm">
+                <div class="bg-emerald-500 text-black p-1 rounded">
+                    <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+                </div>
+                <span>Azhra Workspace</span>
+            </div>
+
+            <!-- Footer Right Signature -->
+            <div class="flex items-center gap-1 text-emerald-300">
+                <span>With</span>
+                <i data-lucide="heart" class="w-3.5 h-3.5 text-red-400 fill-red-400"></i>
+                <span>from Yogyakarta</span>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
