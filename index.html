@@ -230,7 +230,145 @@
                 </a>
             </div>
         </div>
+        
+<!-- SEGMEN 2: PROFIL MAHASISWA -->
+        <section id="profil" class="py-24 bg-[#174437] relative border-b border-emerald-800">
+            <div class="max-w-7xl mx-auto px-6">
+                
+                <!-- Section Title -->
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
+                        Profil Mahasiswa
+                    </h2>
+                    <p class="text-emerald-200/80 text-base">
+                        Informasi lengkap mengenai latar belakang akademik, keahlian, dan minat utama.
+                    </p>
+                    <div class="w-16 h-1 bg-emerald-400 mx-auto mt-4 rounded-full"></div>
+                </div>
 
+                <!-- Grid Card Profil -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left Column: Foto & Identitas Mahasiswa -->
+                    <div class="lg:col-span-5 bg-[#1b4d3e] p-8 rounded-2xl border border-emerald-700/60 shadow-xl flex flex-col items-center text-center relative overflow-hidden">
+                        <!-- Decorative Top Ribbon -->
+                        <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500"></div>
+
+                        <!-- 2. Foto atau Ilustrasi Profil -->
+                        <div class="relative mb-6 group">
+                            <div class="w-40 h-40 rounded-full p-1 bg-gradient-to-tr from-emerald-400 to-teal-200 shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" 
+                                     alt="Foto Profil Mahasiswa" 
+                                     class="w-full h-full object-cover rounded-full filter border-2 border-[#1b4d3e]">
+                            </div>
+                            <span class="absolute bottom-2 right-2 bg-emerald-500 text-emerald-950 p-2 rounded-full shadow-lg border-2 border-[#1b4d3e]" title="Status Aktif">
+                                <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                            </span>
+                        </div>
+
+                        <!-- 1. Nama dan Identitas Mahasiswa -->
+                        <h3 class="text-2xl font-bold text-white mb-1">Azhra Zukhruf Kessuma Interazhra</h3>
+                        <p class="text-emerald-300 font-mono text-sm mb-4">NIM: 2201094002 • Mahasiswa Aktif</p>
+
+                        <!-- 3. Program Studi -->
+                        <div class="w-full bg-[#153e32] p-4 rounded-xl border border-emerald-800/80 mb-6 text-left">
+                            <div class="text-xs uppercase tracking-wider text-emerald-400 font-semibold mb-1">Program Studi</div>
+                            <div class="text-base font-semibold text-white">Manajemen Informasi & Komunikasi</div>
+                            <div class="text-xs text-emerald-200/70 mt-0.5">Sekolah Tinggi Multi Media (STMM) Yogyakarta</div>
+                        </div>
+
+                        <!-- Quick Badges -->
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <span class="px-3 py-1 bg-emerald-900/60 text-emerald-200 text-xs rounded-full border border-emerald-700">Motion Graphic</span>
+                            <span class="px-3 py-1 bg-emerald-900/60 text-emerald-200 text-xs rounded-full border border-emerald-700">Joomla & Web</span>
+                            <span class="px-3 py-1 bg-emerald-900/60 text-emerald-200 text-xs rounded-full border border-emerald-700">Radio Media</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Deskripsi, Hobi, & Kontak -->
+                    <div class="lg:col-span-7 space-y-6">
+                        
+                        <!-- 4. Deskripsi Singkat -->
+                        <div class="bg-[#1b4d3e] p-7 rounded-2xl border border-emerald-700/60 shadow-xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="p-2 bg-emerald-800/80 rounded-lg text-emerald-300">
+                                    <i data-lucide="user-check" class="w-5 h-5"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white">Deskripsi Singkat</h4>
+                            </div>
+                            <p class="text-emerald-100/90 leading-relaxed text-base">
+                                Mahasiswa yang berfokus pada tata kelola informasi media publik dan pengembangan konten digital multimedia. Memiliki pengalaman praktis dalam produksi audio broadcasting, perancangan antarmuka web CMS Joomla/Laravel, serta pembuatan aset motion graphics untuk kebutuhan komunikasi visual.
+                            </p>
+                        </div>
+
+                        <!-- 5. Hobi atau Minat -->
+                        <div class="bg-[#1b4d3e] p-7 rounded-2xl border border-emerald-700/60 shadow-xl" id="minat">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="p-2 bg-emerald-800/80 rounded-lg text-emerald-300">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white">Hobi & Minat Utama</h4>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="p-4 bg-[#153e32] rounded-xl border border-emerald-800/80 flex items-start gap-3">
+                                    <i data-lucide="video" class="w-5 h-5 text-emerald-400 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-semibold text-white text-sm">Motion Graphics & Editing</h5>
+                                        <p class="text-xs text-emerald-200/70 mt-1">Eksplorasi Adobe After Effects, Illustrator, & Canva.</p>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-[#153e32] rounded-xl border border-emerald-800/80 flex items-start gap-3">
+                                    <i data-lucide="radio" class="w-5 h-5 text-emerald-400 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-semibold text-white text-sm">Penyiaran & Radio Production</h5>
+                                        <p class="text-xs text-emerald-200/70 mt-1">Kurasi musik, podcast, dan manajemen program radio.</p>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-[#153e32] rounded-xl border border-emerald-800/80 flex items-start gap-3">
+                                    <i data-lucide="layout-template" class="w-5 h-5 text-emerald-400 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-semibold text-white text-sm">Web Development</h5>
+                                        <p class="text-xs text-emerald-200/70 mt-1">Membangun portal berita & CMS kolaboratif.</p>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-[#153e32] rounded-xl border border-emerald-800/80 flex items-start gap-3">
+                                    <i data-lucide="gamepad-2" class="w-5 h-5 text-emerald-400 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-semibold text-white text-sm">Gaming & World Building</h5>
+                                        <p class="text-xs text-emerald-200/70 mt-1">Eksplorasi sistem mekanik Minecraft Java Edition.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6. Kontak atau Media Sosial (Opsional) -->
+                        <div class="bg-[#1b4d3e] p-7 rounded-2xl border border-emerald-700/60 shadow-xl" id="kontak">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="p-2 bg-emerald-800/80 rounded-lg text-emerald-300">
+                                    <i data-lucide="share-2" class="w-5 h-5"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white">Kontak & Media Sosial</h4>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="mailto:azhra@example.com" class="flex items-center gap-2 px-4 py-2.5 bg-[#153e32] hover:bg-emerald-900 text-emerald-100 rounded-lg border border-emerald-800 text-sm font-medium transition-colors">
+                                    <i data-lucide="mail" class="w-4 h-4 text-emerald-400"></i> Email Saya
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" class="flex items-center gap-2 px-4 py-2.5 bg-[#153e32] hover:bg-emerald-900 text-emerald-100 rounded-lg border border-emerald-800 text-sm font-medium transition-colors">
+                                    <i data-lucide="linkedin" class="w-4 h-4 text-emerald-400"></i> LinkedIn
+                                </a>
+                                <a href="https://github.com" target="_blank" class="flex items-center gap-2 px-4 py-2.5 bg-[#153e32] hover:bg-emerald-900 text-emerald-100 rounded-lg border border-emerald-800 text-sm font-medium transition-colors">
+                                    <i data-lucide="github" class="w-4 h-4 text-emerald-400"></i> GitHub
+                                </a>
+                                <a href="https://instagram.com" target="_blank" class="flex items-center gap-2 px-4 py-2.5 bg-[#153e32] hover:bg-emerald-900 text-emerald-100 rounded-lg border border-emerald-800 text-sm font-medium transition-colors">
+                                    <i data-lucide="instagram" class="w-4 h-4 text-emerald-400"></i> Instagram
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- FOOTER SECTION -->
